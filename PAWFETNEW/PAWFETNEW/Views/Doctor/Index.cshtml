@@ -1,0 +1,93 @@
+﻿@model IEnumerable<PAWFETNEW.Models.Tbl_Doctor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<br />
+<h2 style="font-family:'Times New Roman', Times, serif"><b><center>List of Doctors</center></b></h2>
+<br />
+
+<style>
+    .table {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 13px;
+        text-decoration-color: darkslategray;
+    }
+
+    td {
+        font-weight: bold;
+        font-size: 13px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: linen;
+    }
+
+    th {
+        background-color: mistyrose;
+        font-weight: bold;
+    }
+</style>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoctorAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qualification)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qualification)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.DoctorID })">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <span class="sr-only">Edit</span>
+                </a> |
+                <a href="@Url.Action("Details", new { id = item.DoctorID })">
+                    <i class="glyphicon glyphicon-expand"></i>
+                    <span class="sr-only">Details</span>
+                </a>|
+                <a href="@Url.Action("Delete", "Doctor",new { id = item.DoctorID})" onclick="return confirm('Do u Want to Delete');">
+                    <i class="glyphicon glyphicon-erase"></i>
+                    <span class="sr-only">Delete</span>
+            </td>
+        </tr>
+    }
+
+</table>

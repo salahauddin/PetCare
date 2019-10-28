@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PAWFETNEW.Models.Tbl_User>
+
+@{
+    ViewBag.Title = "ViewMembers";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<head>
+    <link href="~/Content/Navigation.css" rel="stylesheet" />
+</head>
+<br />
+<h2 style="font-family:'Times New Roman', Times, serif"><b><center>Details of Members</center></b></h2>
+<style>
+    .table-striped {
+        font-weight: bold;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 13px;
+        background-color: mistyrose;
+    }
+
+    th {
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+
+
+<br />
+<center>
+    <table class="table table-striped">
+        <tr style="background-color:linen">
+            <th>
+                User Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Email
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone_No)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+
+
+            </tr>
+        }
+    </table>
+</center>

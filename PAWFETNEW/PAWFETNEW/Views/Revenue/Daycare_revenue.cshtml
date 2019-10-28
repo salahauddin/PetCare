@@ -1,0 +1,189 @@
+﻿@model PAWFETNEW.Models.Class1
+
+
+@{
+    /**/
+
+    ViewBag.Title = "Daycare_revenue";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<center>
+    <h1>Revenue</h1>
+</center>
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <a href="@Url.Action("Augchart","Revenue")">
+            <img src="~/Models/img/september.jpg" style="height:248px;  border:medium;border-radius:50%" height="200px" width="" />
+        </a>
+
+        <br />
+        <br />
+        <table class="table-striped">
+
+            <tr>
+
+                <th style="padding-left:30px">Day Care</th>
+                <td style="padding-left:150px">@Model.sum12</td>
+
+            </tr>
+
+            <tr>
+                <th style="padding-left:30px">Medical Assistance </th>
+                <td style="padding-left:150px">@Model.sum22</td>
+
+            </tr>
+            <tr>
+                <th style="padding-left:30px">Donations </th>
+                <td style="padding-left:150px">@Model.sum32</td>
+
+            </tr>
+            <tr>
+                <th style="padding-left:30px">Pets Sold </th>
+                <td style="padding-left:150px">@Model.sum42</td>
+
+            </tr>
+
+        </table>
+    </div>
+
+
+
+
+    <div>
+        <a href="@Url.Action("Octchart","Revenue")">
+            <img src="~/Models/img/october.jpg" style="height:248px ;border-radius:50%" />
+        </a>
+        <br />
+        <br />
+
+        <table class="table-striped">
+
+            <tr>
+
+                <th style="padding-left:30px">Day Care</th>
+                <td style="padding-left:150px">@Model.sum13</td>
+
+            </tr>
+            <tr>
+                <th style="padding-left:30px">Medical Assistance </th>
+                <td style="padding-left:150px">@Model.sum23</td>
+
+            </tr>
+            <tr>
+                <th style="padding-left:30px">Donations </th>
+                <td style="padding-left:150px">@Model.sum33</td>
+
+            </tr>
+            <tr>
+                <th style="padding-left:30px">Pets Sold </th>
+                <td style="padding-left:150px">@Model.sum43</td>
+
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+
+<br />
+<br />
+
+@Ajax.ActionLink(
+  "load partial view",
+  "sepchart1",
+  "Revenue",
+  null,
+  new AjaxOptions { UpdateTargetId = "result" }
+)
+
+<style>
+    th {
+        background-color: azure;
+    }
+
+    td {
+        background-color: cornflowerblue
+    }
+</style>
+<div id="result"></div>
+
+<div>
+
+
+    <img src="~/Models/img/august-1.jpg" style="height:248px;border-radius:50%" />
+
+    <br />
+    <br />
+
+
+    <table class="table-striped">
+
+        <tr>
+
+            <th style="padding-left:30px">Day care</th>
+            <td style="padding-left:150px">@Model.sum11</td>
+
+        </tr>
+        <tr>
+            <th style="padding-left:30px">Medical Assistance </th>
+            <td style="padding-left:150px">@Model.sum21</td>
+
+        </tr>
+        <tr>
+            <th style="padding-left:30px">Donations </th>
+            <td style="padding-left:150px">@Model.sum31</td>
+
+        </tr>
+        <tr>
+            <th style="padding-left:30px">Pets Sold </th>
+            <td style="padding-left:150px">@Model.sum41</td>
+
+        </tr>
+    </table>
+
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+@*<div>
+        <ul class="nav navbar-nav">
+            <li style="padding-right:80px"><strong>ACTIVITY</strong></li>
+            <li style="padding-right:80px"><strong>AUGUST</strong></li>
+            <li style="padding-right:80px"><strong>SEPTEMBER</strong></li>
+            <li style="padding-right:80px"><strong>OCTOBER</strong></li>
+        </ul>
+
+    </div>
+
+    <br />
+
+    <div>
+        <ul class="nav navbar-nav">
+            <li style="padding-right:80px">DayCare</li>
+            <li style="padding-right:80px">@Model.sum11 </li>
+            <li style="padding-right:80px">@Model.sum12 </li>
+            <li>@Model.sum13</li>
+        </ul>
+    </div>
+
+    <br />
+
+    <div>
+        <ul class="nav navbar-nav">
+            <li style="padding-right:80px">Medical Assistance</li>
+            <li style="padding-right:80px">@Model.sum21 </li>
+            <li style="padding-right:80px">@Model.sum22 </li>
+            <li style="padding-right:80px">@Model.sum23</li>
+        </ul>
+    </div>*@
+
+
+
+
+

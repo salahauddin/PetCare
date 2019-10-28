@@ -1,0 +1,89 @@
+﻿@model IEnumerable<PAWFETNEW.Models.Tbl_Pets>
+@{
+    ViewBag.Title = "DisplayPetDetails";
+    WebGrid webGrid = new WebGrid(source: Model);
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<head>
+    <style>
+        th {
+            background-color: mistyrose;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+            text-decoration-color: darkslategray;
+        }
+
+        td {
+            background-color: linen;
+            font-size: 13px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration-color: darkslategray;
+            font-weight: bold;
+        }
+
+        #add {
+            position: relative;
+            top: 25px;
+            left: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+
+        <input type="button" style="background-color:azure" id="add" value="Add New" onclick="@("window.location.href='" + @Url.Action("Create", "Pets") + "'");" style="back" />
+
+        <div class="div1" align="center" style="margin:50px; ">
+            <table class="table table-responsive  ">
+                <thead>
+                    <tr style="background-color:lavender;">
+                        <th> Pet Category</th>
+                        <th> Pet Age</th>
+                        <th>Pet Breed </th>
+                        <th>Pet Gender </th>
+                        <th>Pet Height</th>
+                        <th>Pet Weight</th>
+                        <th>Pet Colour</th>
+                        <th> Price</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody style="overflow:scroll">
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td> @item.Pet_Category  </td>
+                            <td>@item.Age</td>
+                            <td>@item.Pet_Breed</td>
+                            <td>@item.Sex</td>
+                            <td>@item.Height</td>
+                            <td>@item.Weights</td>
+                            <td>@item.Colour</td>
+                            <td>@item.Pet_Price</td>
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = item.PetID })">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    <span class="sr-only">Edit</span>
+                                </a> |
+                                <a href="@Url.Action("Details", new { id = item.PetID })">
+                                    <i class="glyphicon glyphicon-expand"></i>
+                                    <span class="sr-only">Details</span>
+                                </a>|
+                                <a href="@Url.Action("Delete1", "Pets",new { id = item.PetID })" onclick="return confirm('Do u Want to Delete');">
+                                    <i class="glyphicon glyphicon-erase"></i>
+                                    <span class="sr-only">Delete</span>
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>

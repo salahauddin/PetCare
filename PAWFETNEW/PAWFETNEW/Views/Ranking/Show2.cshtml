@@ -1,0 +1,36 @@
+﻿<html>
+<head>
+    <style>
+        .top{
+            font-size:larger;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="col-sm-6 col-lg-6 col-xs-6 col-lg-1 col-md-6" style="height:500px;width:500px">
+        <a href="@Url.Action("changeright1", "Ranking")">
+            <img src="@Url.Content((TempData["message1"]).ToString())" style="width:100%;height:100%" />
+            <br />
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-6 col-xs-6 col-lg-1 col-md-6" style="height:500px;width:500px">
+        <a href="@Url.Action("changeleft1", "Ranking")">
+            <img src="@Url.Content((TempData["message2"]).ToString())" style="width:100%;height:100%" />
+        </a>
+        <br />
+        <br />
+    </div>
+    <br />
+    <br />
+    <div class="col-sm-12 col-lg-12 col-xs-12 col-lg-12 col-md-12">
+        <a href="@Url.Action("top", "Ranking")">
+            <span class="top"><center>Top list</center> </span>
+        </a>
+    </div>
+
+</body>
+
+</html>

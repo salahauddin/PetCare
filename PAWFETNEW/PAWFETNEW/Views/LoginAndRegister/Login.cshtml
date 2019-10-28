@@ -1,0 +1,102 @@
+﻿@model PAWFETNEW.Models.Tbl_User
+
+@{
+    ViewBag.Title = "Login";
+   
+}
+<html>
+<head>
+    <link href="~/CSS/LoginCss.css" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <div class="body-content" style="max-width:300px;margin:auto">
+
+                    @using (Html.BeginForm("Login", "LoginAndRegister", FormMethod.Post))
+                    {
+                        <br /><br /><br /><br /><br /><br /><br /><br />
+                        <h2><font color="red">@PAWFETNEW.Resources.MyTexts.AccountLogin</font></h2>
+                        <p style="color:aliceblue">@ViewBag.message</p>
+                        <div class="input-container">
+                            <i class="fa fa-user icon">
+
+                            </i>
+                            @Html.TextBoxFor(m => m.Email, new { placeholder = @PAWFETNEW.Resources.MyTexts.EmailID, @class = "input-field" })
+
+                            @*<input type="text" class="input-field" placeholder=@PAWFETNEW.Resources.MyTexts.EmailID ></input>*@
+
+                        </div>
+                     
+                       
+                        <p> @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })</p>
+                       
+
+                   
+                        <div class="input-container">
+                            <i class="fa fa-key icon">
+
+
+                            </i>
+                            @Html.PasswordFor(m => m.UserPassword, new { placeholder = @PAWFETNEW.Resources.MyTexts.Password, @class = "input-field", @id = "password" })
+
+                            @*<input type="text" class="input-field" id = "password" placeholder=@PAWFETNEW.Resources.MyTexts.Password ></input>*@
+                            <i class="fa fa-eye icon   " id="show_hide"></i>
+                        </div>
+                
+                       
+                        <p>  @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })</p>
+                      
+
+
+
+                      
+                        <div>
+
+                            <button class="btn" type="submit">@PAWFETNEW.Resources.MyTexts.Login</button>
+                        </div>
+                        <div>
+                            @Html.ActionLink("English", ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), new { language = "en-US", @class = "Translate" }, null)
+                            @Html.ActionLink("Tamil", ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), new { language = "ta-IN", @class = "Translate" }, null)
+                            @Html.ActionLink("Hindi", ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), new { language = "hi-IN", @class = "Translate" }, null)
+                        </div>
+
+                        @*<form>
+                <input type="password" name="password" id="password">
+                <button type="button" id="show_hide" name="show_hide">LOGIN</button>
+            </form>*@
+
+                        <script>
+                            $(document).ready(function () {
+                                $("#show_hide").mouseover(function () {
+                                    $("#password").attr("type", "text");
+                                });
+
+                                $("#show_hide").on("mouseleave", function () {
+                                    $("#password").attr("type", "password");
+                                });
+
+                            });
+                        </script>
+                    }
+                </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>
+
+

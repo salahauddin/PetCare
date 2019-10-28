@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PAWFETNEW.Models.Tbl_Adoption>
+
+@{
+    ViewBag.Title = "AdoptionList";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<br />
+<center><h2><b>AdoptionList</b></h2></center>
+<br />
+<style>
+    .table {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: darkslategray;
+        font-size: 13px;
+        background-color: linen;
+    }
+
+    th {
+        font-family: 'Times New Roman', Times, serif;
+        background-color: mistyrose;
+    }
+
+    h2 {
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+<p>
+</p>
+<strong>
+    <table class="table">
+        <tr>
+            <th>
+                Adoption Date
+            </th>
+            <th>
+                Pet Category
+            </th>
+            <th>
+                Pet Breed
+            </th>
+            <th>
+                User Name
+            </th>
+        </tr>
+</strong>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.adoption_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_Pets.Pet_Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_Pets.Pet_Breed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_User.UserName)
+        </td>
+
+    </tr>
+}
+
+</table>

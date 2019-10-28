@@ -1,0 +1,88 @@
+﻿@model PAWFETNEW.Models.Tbl_Pets
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+<head>
+    <style>
+        body {
+            background-color: #99B8A6;
+            background-image: url('../../Models/bg/142071orig.jpg');
+        }
+
+        img {
+            border-radius: 50px;
+        }
+
+        p {
+            font-family: 'Times New Roman';
+            font-size: x-large;
+            color: white;
+        }
+    </style>
+</head>
+
+<body style="
+        background-image: url('../../Images/cute-kittens.jpg');
+">
+
+    <div class="container-fluid">
+        <center>
+            <div class="row" style="margin:100px" padding="50px">
+                <div class="col-md-6">
+                    <p><b>Pet Category: </b> @Html.DisplayFor(model => model.Pet_Category)</p>
+
+                    <p><b>Pet Age: </b>    @Html.DisplayFor(model => model.Age)</p>
+                    <p><b>Pet Breed:</b>   @Html.DisplayFor(model => model.Pet_Breed)</p>
+                    <p><b>Pet Gender:</b>  @Html.DisplayFor(model => model.Sex)</p>
+                    <p><b>Height:</b>      @Html.DisplayFor(model => model.Height)</p>
+                    <p><b>Weight: </b>      @Html.DisplayFor(model => model.Weights)</p>
+                    <p><b>Colour: </b>     @Html.DisplayFor(model => model.Colour)</p>
+                    <p><b>Price:</b>       @Html.DisplayFor(model => model.Pet_Price)</p>
+
+
+
+
+                </div>
+
+
+
+
+
+                <div class="col-md-6">
+                    <img onmouseover="big(this)" onmouseout="normal(this)" src="@Url.Content(Model.img_location)" height="250" width="250" />
+
+                    <script>
+                        function big(x) {
+                            x.style.height = "300px";
+                            x.style.width = "300px";
+                        }
+                        function normal(x) {
+                            x.style.height = "250px";
+                            x.style.width = "250px";
+                        }
+                    </script>
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+            <div class="button" style="margin-top:60px ">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.PetID })
+                @*<input type="button" id="add" value="Edit"
+                    onclick="@("window.location.href='" + @Url.Action("Edit ", "Pets", new { id = Model.PetID }) + "'");" />*@
+                <input type="button" id="add" value="Back to List" style="margin-left:50px"
+                       onclick="@("window.location.href='" + @Url.Action("List", "Pets") + "'");" />
+            </div>
+        </center>
+    </div>
+</body>
+
+

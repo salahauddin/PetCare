@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PAWFETNEW.Models.Tbl_MedicalAssistance>
+
+@{
+    ViewBag.Title = "ApointmentList";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<br />
+<h2 style="font-family:'Times New Roman', Times, serif"><b><center>Apointment List</center></b></h2>
+<style>
+    th {
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 13px;
+        background-color: mistyrose;
+    }
+
+    td {
+        font-weight: bold;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 12px;
+        background-color: linen;
+        text-decoration-color: darkslategray;
+    }
+</style>
+        <table class="table">
+
+            <tr>
+                <th>
+                    Appointment Date
+                </th>
+                <th>
+                    Doctor Name
+                </th>
+                <th>
+                    User Name
+                </th>
+                <th>Problem</th>
+
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Appointment_Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tbl_Doctor.Doctor_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tbl_User.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Problem)
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div>
+</div>

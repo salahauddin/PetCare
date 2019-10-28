@@ -1,0 +1,866 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="petcareModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="animals1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ranking" Type="int" />
+          <Property Name="pet_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Adoption">
+          <Key>
+            <PropertyRef Name="AdoptionID" />
+          </Key>
+          <Property Name="AdoptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PetID" Type="int" />
+          <Property Name="adoption_Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Tbl_DayCare">
+          <Key>
+            <PropertyRef Name="Daycare_id" />
+          </Key>
+          <Property Name="Daycare_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PetCategory" Type="varchar" MaxLength="20" />
+          <Property Name="PetBreed" Type="varchar" MaxLength="20" />
+          <Property Name="Date_Of_Service" Type="date" />
+          <Property Name="Duration" Type="varchar" MaxLength="20" />
+          <Property Name="Service_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Doctor">
+          <Key>
+            <PropertyRef Name="DoctorID" />
+          </Key>
+          <Property Name="DoctorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Doctor_Name" Type="varchar" MaxLength="20" />
+          <Property Name="Phone_No" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="20" />
+          <Property Name="DoctorAddress" Type="varchar" MaxLength="30" />
+          <Property Name="Salary" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Qualification" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Tbl_Donation">
+          <Key>
+            <PropertyRef Name="DonorID" />
+          </Key>
+          <Property Name="DonorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Donor_Name" Type="varchar" MaxLength="20" />
+          <Property Name="Donation_Amount" Type="varchar" MaxLength="20" />
+          <Property Name="DonorAddress" Type="varchar" MaxLength="30" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="20" />
+          <Property Name="donation_date" Type="date" />
+        </EntityType>
+        <EntityType Name="Tbl_MedicalAssistance">
+          <Key>
+            <PropertyRef Name="Medical_id" />
+          </Key>
+          <Property Name="Medical_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Problem" Type="varchar" MaxLength="70" />
+          <Property Name="Appointment_Date" Type="date" />
+          <Property Name="DoctorId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Pets">
+          <Key>
+            <PropertyRef Name="PetID" />
+          </Key>
+          <Property Name="PetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pet_Category" Type="varchar" MaxLength="20" />
+          <Property Name="Age" Type="varchar" MaxLength="10" />
+          <Property Name="Pet_Breed" Type="varchar" MaxLength="20" />
+          <Property Name="Sex" Type="varchar" MaxLength="10" />
+          <Property Name="Height" Type="varchar" MaxLength="10" />
+          <Property Name="Weights" Type="varchar" MaxLength="20" />
+          <Property Name="Colour" Type="varchar" MaxLength="20" />
+          <Property Name="Pet_Price" Type="nvarchar" MaxLength="20" />
+          <Property Name="img_location" Type="varchar" MaxLength="200" />
+          <Property Name="taken" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Service">
+          <Key>
+            <PropertyRef Name="Service_Id" />
+          </Key>
+          <Property Name="Service_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service_Type" Type="varchar" MaxLength="50" />
+          <Property Name="amount" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'petcare.dbo.Tbl_Service_Offered' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Tbl_Service_Offered">
+          <Key>
+            <PropertyRef Name="Offer_id" />
+          </Key>
+          <Property Name="Offer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="ServiceId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Phone_No" Type="varchar" MaxLength="20" />
+          <Property Name="UserAddress" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="100" />
+          <Property Name="Wallet" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__animals1__pet_id__5070F446">
+          <End Role="Tbl_Pets" Type="Self.Tbl_Pets" Multiplicity="0..1" />
+          <End Role="animals1" Type="Self.animals1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Pets">
+              <PropertyRef Name="PetID" />
+            </Principal>
+            <Dependent Role="animals1">
+              <PropertyRef Name="pet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Adopt__PetID__412EB0B6">
+          <End Role="Tbl_Pets" Type="Self.Tbl_Pets" Multiplicity="0..1" />
+          <End Role="Tbl_Adoption" Type="Self.Tbl_Adoption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Pets">
+              <PropertyRef Name="PetID" />
+            </Principal>
+            <Dependent Role="Tbl_Adoption">
+              <PropertyRef Name="PetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Adopt__UserI__403A8C7D">
+          <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+          <End Role="Tbl_Adoption" Type="Self.Tbl_Adoption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tbl_Adoption">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_DayCa__Servi__3A81B327">
+          <End Role="Tbl_Service" Type="Self.Tbl_Service" Multiplicity="0..1" />
+          <End Role="Tbl_DayCare" Type="Self.Tbl_DayCare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Service">
+              <PropertyRef Name="Service_Id" />
+            </Principal>
+            <Dependent Role="Tbl_DayCare">
+              <PropertyRef Name="Service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_DayCa__UserI__398D8EEE">
+          <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+          <End Role="Tbl_DayCare" Type="Self.Tbl_DayCare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tbl_DayCare">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Medic__Docto__75A278F5">
+          <End Role="Tbl_Doctor" Type="Self.Tbl_Doctor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tbl_MedicalAssistance" Type="Self.Tbl_MedicalAssistance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Doctor">
+              <PropertyRef Name="DoctorID" />
+            </Principal>
+            <Dependent Role="Tbl_MedicalAssistance">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Medic__UserI__45F365D3">
+          <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+          <End Role="Tbl_MedicalAssistance" Type="Self.Tbl_MedicalAssistance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tbl_MedicalAssistance">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Servi__Servi__3D5E1FD2">
+          <End Role="Tbl_Service" Type="Self.Tbl_Service" Multiplicity="0..1" />
+          <End Role="Tbl_Service_Offered" Type="Self.Tbl_Service_Offered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Service">
+              <PropertyRef Name="Service_Id" />
+            </Principal>
+            <Dependent Role="Tbl_Service_Offered">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Servi__UserI__3C69FB99">
+          <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+          <End Role="Tbl_Service_Offered" Type="Self.Tbl_Service_Offered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tbl_Service_Offered">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActiveDirectories_UserID">
+          <End Role="Tbl_Pets" Type="Self.Tbl_Pets" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="animals1" Type="Self.animals1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Pets">
+              <PropertyRef Name="PetID" />
+            </Principal>
+            <Dependent Role="animals1">
+              <PropertyRef Name="pet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="adoption" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="pet_id" Type="int" Mode="In" />
+          <Parameter Name="date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="amount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="amount" Type="int" Mode="In" />
+        </Function>
+        <Function Name="medical" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="problem" Type="varchar" Mode="In" />
+          <Parameter Name="date" Type="date" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="service" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="serviceid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="taken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Tbl_DayCare_revenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start_date" Type="varchar" Mode="In" />
+          <Parameter Name="end_date" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Tbl_Doctor_adoption" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start_date" Type="varchar" Mode="In" />
+          <Parameter Name="end_date" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Tbl_Doctor_revenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start_date" Type="varchar" Mode="In" />
+          <Parameter Name="end_date" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Tbl_Donation_revenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start_date" Type="varchar" Mode="In" />
+          <Parameter Name="end_date" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="petcareModelStoreContainer">
+          <EntitySet Name="animals1" EntityType="Self.animals1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Adoption" EntityType="Self.Tbl_Adoption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_DayCare" EntityType="Self.Tbl_DayCare" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Doctor" EntityType="Self.Tbl_Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Donation" EntityType="Self.Tbl_Donation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_MedicalAssistance" EntityType="Self.Tbl_MedicalAssistance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Pets" EntityType="Self.Tbl_Pets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Service" EntityType="Self.Tbl_Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_User" EntityType="Self.Tbl_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Service_Offered" EntityType="Self.Tbl_Service_Offered" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Tbl_Service_Offered].[Offer_id] AS [Offer_id], 
+    [Tbl_Service_Offered].[UserID] AS [UserID], 
+    [Tbl_Service_Offered].[ServiceId] AS [ServiceId]
+    FROM [dbo].[Tbl_Service_Offered] AS [Tbl_Service_Offered]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__animals1__pet_id__5070F446" Association="Self.FK__animals1__pet_id__5070F446">
+            <End Role="Tbl_Pets" EntitySet="Tbl_Pets" />
+            <End Role="animals1" EntitySet="animals1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Adopt__PetID__412EB0B6" Association="Self.FK__Tbl_Adopt__PetID__412EB0B6">
+            <End Role="Tbl_Pets" EntitySet="Tbl_Pets" />
+            <End Role="Tbl_Adoption" EntitySet="Tbl_Adoption" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Adopt__UserI__403A8C7D" Association="Self.FK__Tbl_Adopt__UserI__403A8C7D">
+            <End Role="Tbl_User" EntitySet="Tbl_User" />
+            <End Role="Tbl_Adoption" EntitySet="Tbl_Adoption" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_DayCa__Servi__3A81B327" Association="Self.FK__Tbl_DayCa__Servi__3A81B327">
+            <End Role="Tbl_Service" EntitySet="Tbl_Service" />
+            <End Role="Tbl_DayCare" EntitySet="Tbl_DayCare" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_DayCa__UserI__398D8EEE" Association="Self.FK__Tbl_DayCa__UserI__398D8EEE">
+            <End Role="Tbl_User" EntitySet="Tbl_User" />
+            <End Role="Tbl_DayCare" EntitySet="Tbl_DayCare" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Medic__Docto__75A278F5" Association="Self.FK__Tbl_Medic__Docto__75A278F5">
+            <End Role="Tbl_Doctor" EntitySet="Tbl_Doctor" />
+            <End Role="Tbl_MedicalAssistance" EntitySet="Tbl_MedicalAssistance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Medic__UserI__45F365D3" Association="Self.FK__Tbl_Medic__UserI__45F365D3">
+            <End Role="Tbl_User" EntitySet="Tbl_User" />
+            <End Role="Tbl_MedicalAssistance" EntitySet="Tbl_MedicalAssistance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Servi__Servi__3D5E1FD2" Association="Self.FK__Tbl_Servi__Servi__3D5E1FD2">
+            <End Role="Tbl_Service" EntitySet="Tbl_Service" />
+            <End Role="Tbl_Service_Offered" EntitySet="Tbl_Service_Offered" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Servi__UserI__3C69FB99" Association="Self.FK__Tbl_Servi__UserI__3C69FB99">
+            <End Role="Tbl_User" EntitySet="Tbl_User" />
+            <End Role="Tbl_Service_Offered" EntitySet="Tbl_Service_Offered" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActiveDirectories_UserID" Association="Self.FK_ActiveDirectories_UserID">
+            <End Role="Tbl_Pets" EntitySet="Tbl_Pets" />
+            <End Role="animals1" EntitySet="animals1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="petcareModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="animals1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ranking" Type="Int32" />
+          <Property Name="pet_id" Type="Int32" />
+          <NavigationProperty Name="Tbl_Pets" Relationship="Self.FK__animals1__pet_id__5070F446" FromRole="animals1" ToRole="Tbl_Pets" />
+          <NavigationProperty Name="Tbl_Pets1" Relationship="Self.FK_ActiveDirectories_UserID" FromRole="animals1" ToRole="Tbl_Pets" />
+        </EntityType>
+        <EntityType Name="Tbl_Adoption">
+          <Key>
+            <PropertyRef Name="AdoptionID" />
+          </Key>
+          <Property Name="AdoptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PetID" Type="Int32" />
+          <Property Name="adoption_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Tbl_Pets" Relationship="Self.FK__Tbl_Adopt__PetID__412EB0B6" FromRole="Tbl_Adoption" ToRole="Tbl_Pets" />
+          <NavigationProperty Name="Tbl_User" Relationship="Self.FK__Tbl_Adopt__UserI__403A8C7D" FromRole="Tbl_Adoption" ToRole="Tbl_User" />
+        </EntityType>
+        <EntityType Name="Tbl_DayCare">
+          <Key>
+            <PropertyRef Name="Daycare_id" />
+          </Key>
+          <Property Name="Daycare_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PetCategory" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PetBreed" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Of_Service" Type="DateTime" Precision="0" />
+          <Property Name="Duration" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Service_id" Type="Int32" />
+          <NavigationProperty Name="Tbl_Service" Relationship="Self.FK__Tbl_DayCa__Servi__3A81B327" FromRole="Tbl_DayCare" ToRole="Tbl_Service" />
+          <NavigationProperty Name="Tbl_User" Relationship="Self.FK__Tbl_DayCa__UserI__398D8EEE" FromRole="Tbl_DayCare" ToRole="Tbl_User" />
+        </EntityType>
+        <EntityType Name="Tbl_Doctor">
+          <Key>
+            <PropertyRef Name="DoctorID" />
+          </Key>
+          <Property Name="DoctorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Doctor_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Phone_No" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Qualification" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_MedicalAssistance" Relationship="Self.FK__Tbl_Medic__Docto__46E78A0C" FromRole="Tbl_Doctor" ToRole="Tbl_MedicalAssistance" />
+        </EntityType>
+        <EntityType Name="Tbl_Donation">
+          <Key>
+            <PropertyRef Name="DonorID" />
+          </Key>
+          <Property Name="DonorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Donor_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Donation_Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DonorAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="donation_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Tbl_MedicalAssistance">
+          <Key>
+            <PropertyRef Name="Medical_id" />
+          </Key>
+          <Property Name="Medical_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Problem" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Appointment_Date" Type="DateTime" Precision="0" />
+          <Property Name="DoctorId" Type="Int32" />
+          <NavigationProperty Name="Tbl_Doctor" Relationship="Self.FK__Tbl_Medic__Docto__46E78A0C" FromRole="Tbl_MedicalAssistance" ToRole="Tbl_Doctor" />
+          <NavigationProperty Name="Tbl_User" Relationship="Self.FK__Tbl_Medic__UserI__45F365D3" FromRole="Tbl_MedicalAssistance" ToRole="Tbl_User" />
+        </EntityType>
+        <EntityType Name="Tbl_Pets">
+          <Key>
+            <PropertyRef Name="PetID" />
+          </Key>
+          <Property Name="PetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pet_Category" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Pet_Breed" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Height" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Weights" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Colour" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Pet_Price" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="img_location" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="taken" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="animals1" Relationship="Self.FK__animals1__pet_id__5070F446" FromRole="Tbl_Pets" ToRole="animals1" />
+          <NavigationProperty Name="animals11" Relationship="Self.FK_ActiveDirectories_UserID" FromRole="Tbl_Pets" ToRole="animals1" />
+          <NavigationProperty Name="Tbl_Adoption" Relationship="Self.FK__Tbl_Adopt__PetID__412EB0B6" FromRole="Tbl_Pets" ToRole="Tbl_Adoption" />
+        </EntityType>
+        <EntityType Name="Tbl_Service">
+          <Key>
+            <PropertyRef Name="Service_Id" />
+          </Key>
+          <Property Name="Service_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_DayCare" Relationship="Self.FK__Tbl_DayCa__Servi__3A81B327" FromRole="Tbl_Service" ToRole="Tbl_DayCare" />
+          <NavigationProperty Name="Tbl_Service_Offered" Relationship="Self.FK__Tbl_Servi__Servi__3D5E1FD2" FromRole="Tbl_Service" ToRole="Tbl_Service_Offered" />
+        </EntityType>
+        <EntityType Name="Tbl_User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone_No" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Wallet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tbl_Adoption" Relationship="Self.FK__Tbl_Adopt__UserI__403A8C7D" FromRole="Tbl_User" ToRole="Tbl_Adoption" />
+          <NavigationProperty Name="Tbl_DayCare" Relationship="Self.FK__Tbl_DayCa__UserI__398D8EEE" FromRole="Tbl_User" ToRole="Tbl_DayCare" />
+          <NavigationProperty Name="Tbl_MedicalAssistance" Relationship="Self.FK__Tbl_Medic__UserI__45F365D3" FromRole="Tbl_User" ToRole="Tbl_MedicalAssistance" />
+          <NavigationProperty Name="Tbl_Service_Offered" Relationship="Self.FK__Tbl_Servi__UserI__3C69FB99" FromRole="Tbl_User" ToRole="Tbl_Service_Offered" />
+        </EntityType>
+        <EntityType Name="Tbl_Service_Offered">
+          <Key>
+            <PropertyRef Name="Offer_id" />
+          </Key>
+          <Property Name="Offer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ServiceId" Type="Int32" />
+          <NavigationProperty Name="Tbl_Service" Relationship="Self.FK__Tbl_Servi__Servi__3D5E1FD2" FromRole="Tbl_Service_Offered" ToRole="Tbl_Service" />
+          <NavigationProperty Name="Tbl_User" Relationship="Self.FK__Tbl_Servi__UserI__3C69FB99" FromRole="Tbl_Service_Offered" ToRole="Tbl_User" />
+        </EntityType>
+        <Association Name="FK__animals1__pet_id__5070F446">
+          <End Role="Tbl_Pets" Type="Self.Tbl_Pets" Multiplicity="0..1" />
+          <End Role="animals1" Type="Self.animals1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Pets">
+              <PropertyRef Name="PetID" />
+            </Principal>
+            <Dependent Role="animals1">
+              <PropertyRef Name="pet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActiveDirectories_UserID">
+          <End Role="Tbl_Pets" Type="Self.Tbl_Pets" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="animals1" Type="Self.animals1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Pets">
+              <PropertyRef Name="PetID" />
+            </Principal>
+            <Dependent Role="animals1">
+              <PropertyRef Name="pet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Adopt__PetID__412EB0B6">
+          <End Role="Tbl_Pets" Type="Self.Tbl_Pets" Multiplicity="0..1" />
+          <End Role="Tbl_Adoption" Type="Self.Tbl_Adoption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Pets">
+              <PropertyRef Name="PetID" />
+            </Principal>
+            <Dependent Role="Tbl_Adoption">
+              <PropertyRef Name="PetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Adopt__UserI__403A8C7D">
+          <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+          <End Role="Tbl_Adoption" Type="Self.Tbl_Adoption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tbl_Adoption">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_DayCa__Servi__3A81B327">
+          <End Role="Tbl_Service" Type="Self.Tbl_Service" Multiplicity="0..1" />
+          <End Role="Tbl_DayCare" Type="Self.Tbl_DayCare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Service">
+              <PropertyRef Name="Service_Id" />
+            </Principal>
+            <Dependent Role="Tbl_DayCare">
+              <PropertyRef Name="Service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_DayCa__UserI__398D8EEE">
+          <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+          <End Role="Tbl_DayCare" Type="Self.Tbl_DayCare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tbl_DayCare">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Medic__Docto__46E78A0C">
+          <End Role="Tbl_Doctor" Type="Self.Tbl_Doctor" Multiplicity="0..1" />
+          <End Role="Tbl_MedicalAssistance" Type="Self.Tbl_MedicalAssistance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Doctor">
+              <PropertyRef Name="DoctorID" />
+            </Principal>
+            <Dependent Role="Tbl_MedicalAssistance">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Medic__UserI__45F365D3">
+          <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+          <End Role="Tbl_MedicalAssistance" Type="Self.Tbl_MedicalAssistance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tbl_MedicalAssistance">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Servi__Servi__3D5E1FD2">
+          <End Role="Tbl_Service" Type="Self.Tbl_Service" Multiplicity="0..1" />
+          <End Role="Tbl_Service_Offered" Type="Self.Tbl_Service_Offered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Service">
+              <PropertyRef Name="Service_Id" />
+            </Principal>
+            <Dependent Role="Tbl_Service_Offered">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Servi__UserI__3C69FB99">
+          <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+          <End Role="Tbl_Service_Offered" Type="Self.Tbl_Service_Offered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tbl_Service_Offered">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="petcareEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="animals1" EntityType="Self.animals1" />
+          <EntitySet Name="Tbl_Adoption" EntityType="Self.Tbl_Adoption" />
+          <EntitySet Name="Tbl_DayCare" EntityType="Self.Tbl_DayCare" />
+          <EntitySet Name="Tbl_Doctor" EntityType="Self.Tbl_Doctor" />
+          <EntitySet Name="Tbl_Donation" EntityType="Self.Tbl_Donation" />
+          <EntitySet Name="Tbl_MedicalAssistance" EntityType="Self.Tbl_MedicalAssistance" />
+          <EntitySet Name="Tbl_Pets" EntityType="Self.Tbl_Pets" />
+          <EntitySet Name="Tbl_Service" EntityType="Self.Tbl_Service" />
+          <EntitySet Name="Tbl_User" EntityType="Self.Tbl_User" />
+          <EntitySet Name="Tbl_Service_Offered" EntityType="Self.Tbl_Service_Offered" />
+          <AssociationSet Name="FK__animals1__pet_id__5070F446" Association="Self.FK__animals1__pet_id__5070F446">
+            <End Role="Tbl_Pets" EntitySet="Tbl_Pets" />
+            <End Role="animals1" EntitySet="animals1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActiveDirectories_UserID" Association="Self.FK_ActiveDirectories_UserID">
+            <End Role="Tbl_Pets" EntitySet="Tbl_Pets" />
+            <End Role="animals1" EntitySet="animals1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Adopt__PetID__412EB0B6" Association="Self.FK__Tbl_Adopt__PetID__412EB0B6">
+            <End Role="Tbl_Pets" EntitySet="Tbl_Pets" />
+            <End Role="Tbl_Adoption" EntitySet="Tbl_Adoption" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Adopt__UserI__403A8C7D" Association="Self.FK__Tbl_Adopt__UserI__403A8C7D">
+            <End Role="Tbl_User" EntitySet="Tbl_User" />
+            <End Role="Tbl_Adoption" EntitySet="Tbl_Adoption" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_DayCa__Servi__3A81B327" Association="Self.FK__Tbl_DayCa__Servi__3A81B327">
+            <End Role="Tbl_Service" EntitySet="Tbl_Service" />
+            <End Role="Tbl_DayCare" EntitySet="Tbl_DayCare" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_DayCa__UserI__398D8EEE" Association="Self.FK__Tbl_DayCa__UserI__398D8EEE">
+            <End Role="Tbl_User" EntitySet="Tbl_User" />
+            <End Role="Tbl_DayCare" EntitySet="Tbl_DayCare" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Medic__Docto__46E78A0C" Association="Self.FK__Tbl_Medic__Docto__46E78A0C">
+            <End Role="Tbl_Doctor" EntitySet="Tbl_Doctor" />
+            <End Role="Tbl_MedicalAssistance" EntitySet="Tbl_MedicalAssistance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Medic__UserI__45F365D3" Association="Self.FK__Tbl_Medic__UserI__45F365D3">
+            <End Role="Tbl_User" EntitySet="Tbl_User" />
+            <End Role="Tbl_MedicalAssistance" EntitySet="Tbl_MedicalAssistance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Servi__Servi__3D5E1FD2" Association="Self.FK__Tbl_Servi__Servi__3D5E1FD2">
+            <End Role="Tbl_Service" EntitySet="Tbl_Service" />
+            <End Role="Tbl_Service_Offered" EntitySet="Tbl_Service_Offered" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Servi__UserI__3C69FB99" Association="Self.FK__Tbl_Servi__UserI__3C69FB99">
+            <End Role="Tbl_User" EntitySet="Tbl_User" />
+            <End Role="Tbl_Service_Offered" EntitySet="Tbl_Service_Offered" />
+          </AssociationSet>
+          <FunctionImport Name="adoption">
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="pet_id" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="amount">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="amount" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="medical">
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="problem" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proname" ReturnType="Collection(petcareModel.proname_Result)" />
+          <FunctionImport Name="service">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="serviceid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="taken">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Tbl_DayCare_revenue" ReturnType="Collection(petcareModel.Tbl_DayCare_revenue_Result)">
+            <Parameter Name="start_date" Mode="In" Type="String" />
+            <Parameter Name="end_date" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Tbl_Doctor_adoption" ReturnType="Collection(String)">
+            <Parameter Name="start_date" Mode="In" Type="String" />
+            <Parameter Name="end_date" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Tbl_Doctor_revenue" ReturnType="Collection(Int32)">
+            <Parameter Name="start_date" Mode="In" Type="String" />
+            <Parameter Name="end_date" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Tbl_Donation_revenue" ReturnType="Collection(String)">
+            <Parameter Name="start_date" Mode="In" Type="String" />
+            <Parameter Name="end_date" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="proname_Result">
+          <Property Type="String" Name="Pet_Breed" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Age" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Height" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Weights" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="img_location" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Tbl_DayCare_revenue_Result">
+          <Property Type="Int32" Name="Service_id" Nullable="true" />
+          <Property Type="String" Name="Duration" Nullable="true" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="petcareModelStoreContainer" CdmEntityContainer="petcareEntities">
+          <EntitySetMapping Name="animals1">
+            <EntityTypeMapping TypeName="petcareModel.animals1">
+              <MappingFragment StoreEntitySet="animals1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ranking" ColumnName="ranking" />
+                <ScalarProperty Name="pet_id" ColumnName="pet_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Adoption">
+            <EntityTypeMapping TypeName="petcareModel.Tbl_Adoption">
+              <MappingFragment StoreEntitySet="Tbl_Adoption">
+                <ScalarProperty Name="AdoptionID" ColumnName="AdoptionID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PetID" ColumnName="PetID" />
+                <ScalarProperty Name="adoption_Date" ColumnName="adoption_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_DayCare">
+            <EntityTypeMapping TypeName="petcareModel.Tbl_DayCare">
+              <MappingFragment StoreEntitySet="Tbl_DayCare">
+                <ScalarProperty Name="Daycare_id" ColumnName="Daycare_id" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PetCategory" ColumnName="PetCategory" />
+                <ScalarProperty Name="PetBreed" ColumnName="PetBreed" />
+                <ScalarProperty Name="Date_Of_Service" ColumnName="Date_Of_Service" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Service_id" ColumnName="Service_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Doctor">
+            <EntityTypeMapping TypeName="petcareModel.Tbl_Doctor">
+              <MappingFragment StoreEntitySet="Tbl_Doctor">
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="Doctor_Name" ColumnName="Doctor_Name" />
+                <ScalarProperty Name="Phone_No" ColumnName="Phone_No" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DoctorAddress" ColumnName="DoctorAddress" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Donation">
+            <EntityTypeMapping TypeName="petcareModel.Tbl_Donation">
+              <MappingFragment StoreEntitySet="Tbl_Donation">
+                <ScalarProperty Name="DonorID" ColumnName="DonorID" />
+                <ScalarProperty Name="Donor_Name" ColumnName="Donor_Name" />
+                <ScalarProperty Name="Donation_Amount" ColumnName="Donation_Amount" />
+                <ScalarProperty Name="DonorAddress" ColumnName="DonorAddress" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="donation_date" ColumnName="donation_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_MedicalAssistance">
+            <EntityTypeMapping TypeName="petcareModel.Tbl_MedicalAssistance">
+              <MappingFragment StoreEntitySet="Tbl_MedicalAssistance">
+                <ScalarProperty Name="Medical_id" ColumnName="Medical_id" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Problem" ColumnName="Problem" />
+                <ScalarProperty Name="Appointment_Date" ColumnName="Appointment_Date" />
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Pets">
+            <EntityTypeMapping TypeName="petcareModel.Tbl_Pets">
+              <MappingFragment StoreEntitySet="Tbl_Pets">
+                <ScalarProperty Name="PetID" ColumnName="PetID" />
+                <ScalarProperty Name="Pet_Category" ColumnName="Pet_Category" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Pet_Breed" ColumnName="Pet_Breed" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weights" ColumnName="Weights" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="Pet_Price" ColumnName="Pet_Price" />
+                <ScalarProperty Name="img_location" ColumnName="img_location" />
+                <ScalarProperty Name="taken" ColumnName="taken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Service">
+            <EntityTypeMapping TypeName="petcareModel.Tbl_Service">
+              <MappingFragment StoreEntitySet="Tbl_Service">
+                <ScalarProperty Name="Service_Id" ColumnName="Service_Id" />
+                <ScalarProperty Name="Service_Type" ColumnName="Service_Type" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_User">
+            <EntityTypeMapping TypeName="petcareModel.Tbl_User">
+              <MappingFragment StoreEntitySet="Tbl_User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Phone_No" ColumnName="Phone_No" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="Wallet" ColumnName="Wallet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Service_Offered">
+            <EntityTypeMapping TypeName="petcareModel.Tbl_Service_Offered">
+              <MappingFragment StoreEntitySet="Tbl_Service_Offered">
+                <ScalarProperty Name="Offer_id" ColumnName="Offer_id" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="adoption" FunctionName="petcareModel.Store.adoption" />
+          <FunctionImportMapping FunctionImportName="amount" FunctionName="petcareModel.Store.amount" />
+          <FunctionImportMapping FunctionImportName="medical" FunctionName="petcareModel.Store.medical" />
+          <FunctionImportMapping FunctionImportName="proname" FunctionName="petcareModel.Store.proname">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="petcareModel.proname_Result">
+                <ScalarProperty Name="Pet_Breed" ColumnName="Pet_Breed" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weights" ColumnName="Weights" />
+                <ScalarProperty Name="img_location" ColumnName="img_location" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="service" FunctionName="petcareModel.Store.service" />
+          <FunctionImportMapping FunctionImportName="taken" FunctionName="petcareModel.Store.taken" />
+          <FunctionImportMapping FunctionImportName="Tbl_DayCare_revenue" FunctionName="petcareModel.Store.Tbl_DayCare_revenue">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="petcareModel.Tbl_DayCare_revenue_Result">
+                <ScalarProperty Name="Service_id" ColumnName="Service_id" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Tbl_Doctor_adoption" FunctionName="petcareModel.Store.Tbl_Doctor_adoption" />
+          <FunctionImportMapping FunctionImportName="Tbl_Doctor_revenue" FunctionName="petcareModel.Store.Tbl_Doctor_revenue" />
+          <FunctionImportMapping FunctionImportName="Tbl_Donation_revenue" FunctionName="petcareModel.Store.Tbl_Donation_revenue" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

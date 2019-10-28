@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="716d0177db8941a78a741d37c5340c28" Name="Diagram1">
+        <EntityTypeShape EntityType="petcareModel.animals1" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="petcareModel.Tbl_Adoption" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="petcareModel.Tbl_DayCare" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="petcareModel.Tbl_Doctor" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="petcareModel.Tbl_Donation" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="petcareModel.Tbl_MedicalAssistance" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="petcareModel.Tbl_Pets" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="petcareModel.Tbl_Service" Width="1.5" PointX="3.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="petcareModel.Tbl_User" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="petcareModel.Tbl_Service_Offered" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="petcareModel.FK__animals1__pet_id__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="petcareModel.FK_ActiveDirectories_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="petcareModel.FK__Tbl_Adopt__PetID__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="petcareModel.FK__Tbl_Adopt__UserI__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="petcareModel.FK__Tbl_DayCa__Servi__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="petcareModel.FK__Tbl_DayCa__UserI__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="petcareModel.FK__Tbl_Medic__Docto__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="petcareModel.FK__Tbl_Medic__UserI__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="petcareModel.FK__Tbl_Servi__Servi__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="petcareModel.FK__Tbl_Servi__UserI__3C69FB99" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

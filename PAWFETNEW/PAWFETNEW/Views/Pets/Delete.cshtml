@@ -1,0 +1,68 @@
+﻿@model PAWFETNEW.Models.Tbl_Pets
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<style>
+    .list {
+        position: relative;
+        top: 500px;
+    }
+
+    .btn {
+        position: relative;
+        top: 250px;
+        left: 400px;
+    }
+</style>
+<body>
+
+    <div class="para left" style="font-family:'Monotype Corsiva';font-size:x-large; text-align:justify; padding:20px">
+        <div class="centered">
+            <div class="card">
+                <p><b>Pet Category: </b> @Html.DisplayFor(model => model.Pet_Category)</p>
+
+                <p><b>Pet Age: </b>    @Html.DisplayFor(model => model.Age)</p>
+                <p><b>Pet Breed:</b>   @Html.DisplayFor(model => model.Pet_Breed)</p>
+                <p><b>Pet Gender:</b>  @Html.DisplayFor(model => model.Sex)</p>
+                <p><b>Height:</b>      @Html.DisplayFor(model => model.Height)</p>
+                <p><b>Weight: </b>      @Html.DisplayFor(model => model.Weights)</p>
+                <p><b>Colour: </b>     @Html.DisplayFor(model => model.Colour)</p>
+                <p><b>Price:</b>       @Html.DisplayFor(model => model.Pet_Price)</p>
+            </div>
+        </div>
+        <input type="button" class="list" style="background-color:azure" id="add" value="List" onclick="@("window.location.href='" + @Url.Action("List", "Pets") + "'");" />
+
+    </div>
+    @*<input type="button" value="List" onclick="@("window.location.href='" + @Url.Action("List", "Pets") + "'");" style="back" />*@
+
+    <div class="para right">
+        <center>
+            @*<img src="@Url.Content(Model.img_location)" height="250" width="250" /></center>*@
+            <img onmouseover="big(this)" onmouseout="normal(this)" src="@Url.Content(Model.img_location)" height="250" width="250" />
+        </center>
+        <script>
+                function big(x) {
+                    x.style.height = "350px";
+                    x.style.width = "350px";
+                }
+                function normal(x) {
+                    x.style.height = "250px";
+                    x.style.width = "250px";
+                }
+        </script>
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" />
+
+            </div>
+        }
+    </div>
+
+</body>

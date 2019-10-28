@@ -1,0 +1,78 @@
+﻿@model IEnumerable<PAWFETNEW.Models.Tbl_Service>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2 style="font-family:'Times New Roman', Times, serif"><b><center>Index</center></b></h2>
+<br />
+<style>
+    .table {
+        background-color: linen;
+        font-size: 13px;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        text-decoration-color: darkslategray;
+    }
+
+    th {
+        font-size: 13px;
+        background-color: mistyrose;
+    }
+
+    td {
+        font-weight: bold;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Service_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service_Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.Service_Id })">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <span class="sr-only">Edit</span>
+                </a> |
+                <a href="@Url.Action("Details", new { id = item.Service_Id })">
+                    <i class="glyphicon glyphicon-expand"></i>
+                    <span class="sr-only">Details</span>
+                </a>|
+                <a href="@Url.Action("Delete", "Delete",new { id = item.Service_Id })" onclick="return confirm('Do u Want to Delete');">
+                    <i class="glyphicon glyphicon-erase"></i>
+                    <span class="sr-only">Delete</span>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,403 @@
+﻿@*@model IEnumerable<PAWFETNEW.Models.Tbl_Pets>
+    @using PAWFETNEW.Models;*@
+    
+@{
+    ViewBag.Title = "GLOBAL";
+    Layout = "~/Views/Shared/PAWFET.cshtml";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <!--PAGER LINK-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 250px;
+            height: 250px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .flip-card-front {
+            background-color: #bbb;
+            color: black;
+        }
+
+        .flip-card-back {
+            background-color: #2980b9;
+            color: white;
+            transform: rotateY(180deg);
+        }
+        /*#myCarousel {
+            background-image: linear-gradient(#d1c05f,#ddeeb1,#d9c868);
+            background-repeat: no-repeat;
+            max-width:100%;
+        }*/
+       
+     #Carousel-image {
+            margin: auto;
+            height: 450px;
+            width: 100%;
+        }
+
+        /*.card-img-to
+        {
+            border:dashed;
+            border-color:black;
+            padding:10px;
+            height:50px;
+            width:100%;
+        }*/
+
+        .Header {
+            position: relative;
+            max-width: 800px; /* Maximum width */
+            margin: 0 auto; /* Center it */
+        }
+
+            .Header .Donation {
+                position: absolute;
+                bottom: 0;
+                background: rgb(0, 0, 0);
+                background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+                color: #f1f1f1; /* Grey text */
+                width: 100%;
+                padding: 20px;
+            }
+
+        .GoToDonationPage {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #008CBA;
+            overflow: hidden;
+            width: 0;
+            height: 100%;
+            transition: .5s ease;
+        }
+
+        .Header:hover .overlay {
+            width: 100%;
+        }
+
+        .open-button {
+            background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            /*bottom: 23px;
+            right: 28px;*/
+            left: 28px;
+            width: 280px;
+        }
+
+
+
+        .overlay1 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: burlywood;
+        }
+
+            .overlay1:hover {
+                opacity: 1;
+            }
+
+        .overlay2 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: burlywood;
+        }
+
+            .overlay2:hover {
+                opacity: 1;
+            }
+
+        .overlay3 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: burlywood;
+        }
+
+            .overlay3:hover {
+                opacity: 1;
+            }
+
+        .overlay4 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: burlywood;
+        }
+
+            .overlay4:hover {
+                opacity: 1;
+            }
+
+    </style>
+</head>
+<body>
+    @*Donation*@
+    <h2>@TempData["DonationMessage"]</h2>
+    <div class="container">
+        <div class="Header">
+            <img src="~/Images/shutterstock_234936910.jpg" alt="Donation" style="width:100%;">
+            <div class="Donation">
+                <h3>SAVE PETS LIKE HIM</h3>
+                <div class="overlay">
+
+                    @*<div class="GoToDonationPage">@Html.ActionLink("Give now", "Donation1", "User") </div>*@
+                    <div class="GoToDonationPage">
+                        <button class="btn btn-info">@Html.ActionLink("Donate now", "Donation1", "PAWFET")</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <article>
+            <h1 id="OurPets"><center>OUR PETS</center></h1>
+        </article>
+        @*card*@
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-lg-3 col-xs-12 ">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="~/Images/4167.jpg" alt="Avatar" style="width:250px;height:250px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h1>John</h1>
+                            <p>Male</p>
+                            <p>Naughty</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-lg-3 col-xs-12 ">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="~/Images/Dog1.jpg" alt="Avatar" style="width:250px;height:250px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h1>Sweety</h1>
+                            <p>Female</p>
+                            <p>Sweet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-lg-3 col-xs-12 ">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="~/Images/doberman-pinscher-puppies-for-sale.jpg" alt="Avatar" style="width:250px;height:250px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h1>Puppy</h1>
+                            <p>Male</p>
+                            <p>Youngest</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-lg-3 col-xs-12 ">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="~/Images/cute-kittens.jpg" alt="Avatar" style="width:250px;height:250px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h1>Chitty</h1>
+                            <p>Female</p>
+                            <p>We love that girl</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        @*Icons*@
+        <div class="row">
+            <div class="col-md-6">
+                <center>
+                    <div class="grid-col grid-col_1/3@minLg">
+                        <div class="contentCard contentCard_storyGuide">
+                            <div class="contentCard-body">
+                                <div class="contentCard-body-details">
+
+                                    <pfdc-lazy-load element="img" alt="" class="lazyLoad u-vr1x" img-class="lazyLoad-img" img-animation-class="m-lazyLoad-img_reveal" src="  https://d17fnq9dkz9hgj.cloudfront.net/uploads/2017/08/PCE_Blue_Icon-17.png  " aria-hidden="true"><img alt="" class="lazyLoad-img" animation-class="m-lazyLoad-img_reveal" src="https://d17fnq9dkz9hgj.cloudfront.net/uploads/2017/08/PCE_Blue_Icon-17.png" aria-hidden="true"></pfdc-lazy-load>
+                                    <h3 class="txt m-txt_xl m-txt_bold m-txt_colorAltS1 m-txt_alignCenter u-vr1x">Searching for a DayCare</h3>
+                                    <p class="txt m-txt_alignCenter u-vr6x">Our site is the best place for your pets to feel at home</p>
+                                    <button class="btn btn-info">@Html.ActionLink("TRY NOW", "Login", "LoginAndRegister")</button>
+                                    @*<a href="https://www.petfinder.com/blog/2015/03/4-tips-for-finding-the-right-pet-for-you/" article-title="Get tips on figuring out who you should adopt." article-position="story-guide-2" class="btn btn_borderAlt m-btn_wide u-isHidden@maxLg" pf-mix-click="trackingBridge.ensighten('Consumer026');trackingBridge.ensighten('Consumer027');">Learn More</a>*@
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </center>
+            </div>
+            <div class="col-md-6">
+                <center>
+                    <div class="contentCard-body-details">
+                        <pfdc-lazy-load element="img" alt="" class="lazyLoad u-vr1x" img-class="lazyLoad-img" img-animation-class="m-lazyLoad-img_reveal" src="    https://d17fnq9dkz9hgj.cloudfront.net/uploads/2017/08/PCE_Blue_Icon-8.png  " aria-hidden="true"><img alt="" class="lazyLoad-img" animation-class="m-lazyLoad-img_reveal" src="https://d17fnq9dkz9hgj.cloudfront.net/uploads/2017/08/PCE_Blue_Icon-8.png" aria-hidden="true"></pfdc-lazy-load>
+                        <h3 class="txt m-txt_xl m-txt_bold m-txt_colorAltS1 m-txt_alignCenter u-vr1x">Take a pet to Your Home</h3>
+                        <p class="txt m-txt_alignCenter u-vr6x">Our Pets are very Charming and playfull!!!</p>
+                        @*<button class="btn btn-info">@Html.ActionLink("Choose from our Pet", "Login", "LoginAndRegister")</button>*@
+                        <button class="btn btn-info">@Html.ActionLink("Choose from our Pet", "Login", "LoginAndRegister")</button>
+                        @*<a href="https://www.petfinder.com/pet-adoption/pet-adoption-information/pet-adoption-faqs/" article-title="Get answers to questions you haven't thought of." article-position="story-guide-3" class="btn btn_borderAlt m-btn_wide u-isHidden@maxLg" pf-mix-click="trackingBridge.ensighten('Consumer026');trackingBridge.ensighten('Consumer027');">Learn More</a>*@
+                    </div>
+                </center>
+            </div>
+        </div>
+        <hr/>
+        @*Carousel*@
+
+        <div class="row">
+            <div class=" col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <div id="myCarousel" class="carousel slide " data-ride="carousel" data-interval="2000">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <li data-target="#myCarousel" data-slide-to="4"></li>
+
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img id="Carousel-image" src="~/Images/cute-kittens.jpg" alt="IMG1" @*class="img-responsive"*@ @*style="min-width: 1349px; width: 1349px;height:500px;image-rendering:auto*@>
+                            <div class="carousel-caption">
+                                @*<h1>DIVINE</h1>*@
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img id="Carousel-image" src="~/Images/dog-wallpaper-hd-2.jpg" alt="IMG2" class="img-responsive" @*style="min-width: 1349px; width: 1349px;height:500px"*@>
+                            <div class="carousel-caption">
+                                @*<h1>ELEGANT</h1>*@
+
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img id="Carousel-image" src="~/Images/fish.jpg" alt="IMG3" class="img-responsive" @*style="min-width: 1349px; width: 1349px;height:500px*@>
+                            <div class="carousel-caption">
+                                @*<h1>PEACE</h1>*@
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img id="Carousel-image" src="~/Images/parrot.jpg" alt="IMG4" @*style="min-width: 1349px; width: 1349px;height:500px"*@>
+                            <div class="carousel-caption">
+                                @*<h1>RICH</h1>*@
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img id="Carousel-image" src="~/Images/rabbit.jpg" alt="IMG5" class="img-responsive" @*style="min-width: 1349px; width: 1349px;height:500px"*@>
+                            <div class="carousel-caption">
+                                @*<h1>CLASS</h1>*@
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next" data-wrap="true">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+        @*rating*@
+        <div style="text-align:center">
+            <h2><button class="btn btn-info">@Html.ActionLink("Rate Our Pets", "Show1", "Ranking")</button></h2>
+        </div>
+    </div>
+</body>
+
+
+

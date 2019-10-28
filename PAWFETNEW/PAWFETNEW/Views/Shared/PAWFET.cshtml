@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -PAWFECT</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/CSS/LoginAndRegister.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #footer {
+            /*background-color:#8E1EFC;*/
+            background-color: #808080;
+            color: white;
+           
+
+        }
+
+        .navbar {
+            /*background-color: #808080;*/
+        }
+        .img{
+
+        }
+    </style>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("PAWFET", "GLOBAL", "PAWFET", new { area = "" }, new { @class = "navbar-brand" })*@
+                @*<button class="btn"><i class="fa fa-paw"></i>@Html.ActionLink( "GLOBAL", "PAWFET", new { area = "" }, new { @class = "navbar-brand" })</button>*@
+               
+                @*<a href="http://localhost:55229/Shared/PAWFET" ><img class="img" src="~/IMAGES/logo.png" style="display:inline-block;" /></a>*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>  <span class="fa fa-paw" style="font-size:36px; color:orangered;float:left">F<span style="color:blueviolet">E</span>CT</span></li>
+                    <li>@Html.ActionLink("Home", "GLOBAL", "PAWFET")</li>
+                    <li>@Html.ActionLink("About", "About", "PAWFET")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "PAWFET")</li>
+                    <li>@Html.ActionLink("Gallery", "Gallery1", "PAWFET")</li>
+
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+    <footer>
+        <div id="footer">
+            <center>
+                <h3>Pawfect Chennai</h3>
+                <h3>1131, Inner Ring Road (Jawaharlal Nehru Road), Koyambedu, Chennai, Tamil Nadu- 600107</h3>
+
+                @*<span class="glyphicon glyphicon-envelope  ">  <h3>pawfetchennai@yahoo.com</h3></span> <span class="glyphicon glyphicon-earphone   ">  <h3>04445856595</h3></span>*@
+                <h3><span class="glyphicon glyphicon-envelope  ">  </span>   pawfectchennai@yahoo.com</h3>
+                <h3><span class="glyphicon glyphicon-earphone ">  </span>     04445856595 </h3>
+                @*<li><div class="footer-detail mail-show-hide"> <i class="glyphicon glyphicon-envelope "></i></span>reservation@hoteljpchennai.com</div></li>
+                <li><div class="footer-detail"><span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i> <i class="fa fa-phone fa-stack-1x"></i></span> <span>+91 44 40288000 | Reservations</span></div></li>*@
+            </center>
+            <hr />
+
+
+            <p>&copy; @DateTime.Now.Year - PAWFECT</p>
+
+
+
+        </div>
+    </footer>
+   
+</body>
+</html>

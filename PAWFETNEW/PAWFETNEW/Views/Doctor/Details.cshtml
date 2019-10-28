@@ -1,0 +1,38 @@
+﻿@model PAWFETNEW.Models.Tbl_Doctor
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<style>
+    body {
+        background-color: #99B8A6;
+        background-image: url('../../Models/bg/142071orig.jpg');
+    }
+
+    img {
+        border-radius: 50px;
+    }
+
+    p {
+        font-family: 'Times New Roman';
+        font-size: x-large;
+        color: white;
+    }
+</style>
+
+<br /><p><h1 style="font-family:'Times New Roman'; color: white;"><center>Details of Doctors</center></h1></p><br />
+<div>
+    <p><b>Doctor Name: </b> @Html.DisplayFor(model => model.Doctor_Name)</p>
+
+    <p><b>Address: </b>    @Html.DisplayFor(model => model.DoctorAddress)</p>
+    <p><b>Doctor Email:</b>   @Html.DisplayFor(model => model.Email)</p>
+    <p><b>Phone Number:</b>  @Html.DisplayFor(model => model.Phone_No)</p>
+    <p><b>Qualification:</b>      @Html.DisplayFor(model => model.Qualification)</p>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DoctorID })
+    @Html.ActionLink("Back to List", "Index")
+</p>

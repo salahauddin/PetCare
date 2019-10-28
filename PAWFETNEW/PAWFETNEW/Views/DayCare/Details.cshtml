@@ -1,0 +1,83 @@
+﻿@model PAWFETNEW.Models.Tbl_DayCare
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_DayCare</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PetCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetBreed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetBreed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Of_Service)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Of_Service)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount_Paid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount_Paid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Service.Service_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Service.Service_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_User.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_User.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Daycare_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Navigation.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+
+        body {
+            /*background-image: url('../../Images/preventing-ticks-on-dogs-in-kitchener-1.jpg');*/
+            /*background-attachment:fixed;
+            background-size:cover;*/
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+        <div class="navbar navbar-inverse navbar-fixed-top nav-tabs-justified">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <h2>Welcome Admin!</h2>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>  <span class="fa fa-paw" style="font-size:36px; color:orangered">F<span style="color:blueviolet">E</span>CT</span></li>
+                       
+                        <li>@Html.ActionLink("Pets", "List", "Pets")</li>
+                        <li>@Html.ActionLink("Medical Assistance", "ApointmentList", "Medical")</li>
+                        <li>@Html.ActionLink("Members", "ViewMembers", "Member")</li>
+                        <li>@Html.ActionLink("Donation", "DonationList", "Donation")</li>
+                        <li>@Html.ActionLink("Adoption", "AdoptionList", "Adoption")</li>
+                        <li>@Html.ActionLink("Daycare", "Index", "DayCare")</li>
+                        <li>@Html.ActionLink("Revenue", "Daycare_revenue", "Revenue")</li>
+                        <li>@Html.ActionLink("Doctor", "Index", "Doctor")</li>
+                        <li>@Html.ActionLink("Services", "Index", "Service")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+
+
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </div>
+
+
+</body>
+</html>

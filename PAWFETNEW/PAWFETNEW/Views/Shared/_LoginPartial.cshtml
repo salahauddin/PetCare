@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Session["Valid"] == "true")
+{
+   if (Session["Authorize"] == "user")
+
+    {
+        using (Html.BeginForm("LogOff", "LoginAndRegister", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+
+<ul class="nav navbar-nav navbar-right">
+    <li> @Html.ActionLink("Hello " + Session["username"] + "!", "Index", "USER", routeValues: null, htmlAttributes: new { title = "Manage" })
+    <li> @Html.ActionLink(Session["amount"]+"$", "Recharge", "USER", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+</ul>
+        }
+    }
+
+
+    if (Session["Authorize"] == "admin")
+
+     {
+         using (Html.BeginForm("LogOff", "LoginAndRegister", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+         {
+             @Html.AntiForgeryToken()
+
+              <ul class="nav navbar-nav navbar-right">
+                  <li>  @Html.ActionLink("Hello " + Session["username"] + "!", "List", "Pets", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+                  <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+              </ul>
+        }
+    }
+}
+
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register1", "LoginAndRegister", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "LoginAndRegister", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+    </ul>
+}
+

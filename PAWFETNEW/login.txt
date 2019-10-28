@@ -1,0 +1,128 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using PetCare.Models;
+
+namespace PetCare.Controllers
+{
+    public class LoginController : Controller
+    {
+        // GET: Login
+        PetCareEntities db = new PetCareEntities();
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            ViewBag.message = "";
+            return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult Login(FormCollection frm)
+        {
+            Tbl_User obj = new Tbl_User();
+            
+
+            string name = frm["username"];
+            string pass = frm["UserPassword"];
+            var result = (from user in db.Tbl_User
+                          where user.Email == name && user.UserPassword == pass
+                          select user).ToList();
+
+            if (name==obj.admin&&pass==obj.password)
+            {
+                Session["username"] = name;
+                Session["valid"] = "true";
+                return RedirectToAction("Index", "Home");
+            }
+           else if (result.Count==1)
+            {
+                Session["username"] = name;
+                Session["valid"] = "true";
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+            {
+                ViewBag.message = "enter the valid login-id";
+                Session["valid"] = "false";
+                return View();
+
+            }
+
+
+        }
+
+        public ActionResult logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
+
+        }
+
+
+
+
+
+
+-------------------------------------------------------------
+
+@model PetCare.Models.Tbl_User
+    @using PetCare.Models
+@{
+    ViewBag.Title = "Login";
+}
+
+
+
+   
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@Html.BeginForm("Login","Login",FormMethod.Post)
+
+<table class="table">
+
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.UserName)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.UserName)
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.UserPassword)
+        </td>
+        <td>
+            @Html.PasswordFor(m => m.UserPassword)
+        </td>
+    </tr>
+
+</table>
+
+<h2>@ViewBag.message </h2>
+
+<button type="submit">Submit</button>
+
+
+
+
+
+
+
+
+    }
+}

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PAWFETNEW.Models.Tbl_Donation>
+
+@{
+    ViewBag.Title = "DonationList";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<br />
+<h2 style="font-family:'Times New Roman', Times, serif"><center><b>Donation List</b></center></h2>
+<br />
+<style>
+    .table {
+        font-weight: bold;
+        background-color: linen;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: linen;
+        text-decoration-color: darkslategray;
+    }
+
+    th {
+        font-family: 'Times New Roman', Times, serif;
+        background-color: mistyrose;
+        font-size: 13px;
+    }
+</style>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Amount
+        </th>
+        <th></th>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Donor_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Donation_Amount)
+            </td>
+
+            <td>
+                @Html.ActionLink("Details", "DonationDetails", new { id = item.DonorID })
+
+            </td>
+        </tr>
+    }
+
+    </table>

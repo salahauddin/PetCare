@@ -1,0 +1,96 @@
+﻿@model IEnumerable<PAWFETNEW.Models.Tbl_DayCare>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+
+}
+
+
+<h2 style="font-family:'Times New Roman', Times, serif"><b><center>Day Care</center></b></h2>
+<br />
+
+<style>
+    .table {
+        background-color: linen;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 13px;
+        text-decoration-color: darkslategray;
+    }
+
+    td {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 13px;
+        text-decoration-color: darkslategray;
+        font-weight: bold;
+    }
+
+    th {
+        background-color: mistyrose;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <th>
+            Pet Category
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetBreed)
+        </th>
+        <th>
+            Date of Service
+        </th>
+        <th>
+            Duration
+        </th>
+
+        <th>
+            Service Type
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_User.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetBreed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Of_Service)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Amount_Paid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment_Status)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_Service.Service_Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_User.UserName)
+            </td>
+            <td>
+                <a href="@Url.Action("Delete", "DayCare",new { id = item.Daycare_id })" onclick="return confirm('Do u Want to Delete');">
+                    <i class="glyphicon glyphicon-erase"></i>
+                    <span class="sr-only">Delete</span>
+                </a>
+
+            </td>
+        </tr>
+    }
+
+</table>

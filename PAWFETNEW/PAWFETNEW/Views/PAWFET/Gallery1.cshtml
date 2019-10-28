@@ -1,0 +1,59 @@
+﻿
+@model IEnumerable<PAWFETNEW.Models.Tbl_Pets>
+@using PAWFETNEW.Models;
+<head>
+    <style>
+        #OurPets {
+            font-family: sans-serif;
+            font-size: larger;
+            color: #aa07f6;
+        }
+    </style>
+</head>
+<body>
+
+    @using (Html.BeginForm("Gallery1", "PAWFET", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+
+                <div class="col-md-4 col-sm-6 col-lg-3 col-xs-12 ">
+                    <div class="thumbnail">
+                        <img src="@Url.Content(item.img_location)" style="height:260px;width:260px">
+                        <div class="caption">
+                            <p>@item.Pet_Breed</p>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    }
+    @*<div class="col-md-4 col-sm-6 col-lg-3 col-xs-12">
+                <div class="thumbnail">
+                    <img src="~/Images/our pets2.jpg" alt="Lights" style="height:250px">
+                    <div class="caption">
+                        <p>PET2</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-lg-3 col-xs-12">
+                <div class="thumbnail">
+                    <img src="~/Images/our pets 3.jpg" alt="Lights" style="height:250px">
+                    <div class="caption">
+                        <p>PET3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-lg-3 col-xs-12">
+                <div class="thumbnail">
+                    <img class="card-img-top" src="~/Images/our pets4.jpg" alt="Lights" style="height:250px">
+                    <div class="caption">
+                        <p>PET4</p>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+</body>

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<PAWFETNEW.Models.proname_Result>
+
+@{
+    ViewBag.Title = "top";
+}
+
+<h2>top</h2>
+
+<style>
+    .img-circle {
+        height: inherit;
+        float: left;
+    }
+
+        .img-circle:hover {
+            transform: scale(1.2)
+        }
+
+    body {
+        background-image: url('../../Models/img/47603wide.jpg');
+        background-size: cover;
+    }
+</style>
+
+
+@{
+    int count = 1;
+}
+<body>
+    <div class="navbar-collapse collapse" id="12" style="background-color:dimgrey;padding-bottom:20px">
+
+        <br />
+
+        <ul class="nav navbar-nav">
+
+            <li style="padding-right:150px"><strong> IMAGE</strong></li>
+            <li style="padding-right:200px"><strong>BREED </strong></li>
+            <li style="padding-right:120px"> <strong>AGE</strong></li>
+            <li style="padding-right:120px"> <strong>HEIGHT</strong></li>
+            <li> <strong>WEIGHT </strong></li>
+        </ul>
+
+    </div>
+
+
+    <br />
+    <br />
+
+
+
+    @foreach (var item in Model)
+    {
+
+
+        <div style="height:180px;    background-color: lightslategray">
+
+
+
+
+            <img src="@Url.Content(item.img_location)" class="img-circle" width="170" height="236" />
+
+
+            <ul class="nav navbar-nav " style="padding-top:6%">
+                <li style="padding-left:50px;padding-right:200px"> @item.Pet_Breed </li>
+                <li style="padding-right:140px"> @item.Age </li>
+                <li style="padding-right:120px"> @item.Height</li>
+                <li> @item.Weights</li>
+
+            </ul>
+
+
+        </div>
+        <br />
+        <br />
+        <br />
+
+
+
+
+
+
+
+    }
+
+    <a href="@Url.Action("Show1", "Ranking")">
+        <span style="font-size:50px; color:black"> back </span>
+    </a>
+
+</body>

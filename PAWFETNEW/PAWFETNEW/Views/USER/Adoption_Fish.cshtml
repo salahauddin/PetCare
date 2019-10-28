@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "~/Views/Shared/User.cshtml";
+}
+
+@model IEnumerable<PAWFETNEW.Models.Tbl_Pets>
+@using PAWFETNEW.Models;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <style>
+
+        body {
+            background-color: antiquewhite;
+        }
+
+        .container1:hover {
+            -ms-transform: scale(1.2);
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+
+        body {
+            background-color: bisque;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both
+        }
+
+        .column-66 {
+            float: left;
+            width: 66.66666%;
+            padding: 20px;
+        }
+
+        .column-33 {
+            float: left;
+            width: 33.33333%;
+            /*width: 44.33333%;*/
+            padding: 20px;
+        }
+
+        .large-font {
+            font-size: 48px;
+        }
+
+        .xlarge-font {
+            font-size: 64px
+        }
+
+        .button {
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+        }
+
+        img {
+            display: block;
+            height: auto;
+            max-width: 100%;
+        }
+
+        img {
+            margin: auto;
+        }
+
+
+        /*.container1:hover{
+            -ms-transform: scale(1.2);
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+        }*/
+
+
+
+    </style>
+
+
+</head>
+<body>
+    <center> <h2 style="color:darkmagenta;font-family:Broadway">Adoption_Fish</h2></center>
+    <br /><br />
+
+
+    @foreach (var item in Model)
+    {
+
+
+        <div class="container">
+            <div class="row">
+                <div class="column-66">
+                    <h1 class="xlarge-font" style="font-size:30px;font-family:'Bell MT'"><b>@item.Pet_Category</b></h1>
+                    <p class="card-text" style="font-size:25px;font-family:Algerian">PetBreed:@item.Pet_Breed</p>
+                    <p class="card-text" style="font-size:20px">Height:@item.Height</p>
+                    <p class="card-text" style="font-size:20px">Weight:@item.Weights</p>
+                    <p style="font-size:20px">Gender:@item.Sex</p>
+                    <p class="card-text" style="font-size:20px">Price:$@item.Pet_Price</p>
+                    <a href="@Url.Action("adopt","USER", new { id= item.PetID})" class="btn btn-primary" style="color:black">Adopt</a>
+
+                </div>
+                <div class="column-33">
+                    <img src="@Url.Content(item.img_location)" style="height:260px;width:260px">
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+
+    <button type="submit">@Html.ActionLink("Back", "Index", "USER")</button>
+
+
+
+
+
+
+
+</body>
+</html>
